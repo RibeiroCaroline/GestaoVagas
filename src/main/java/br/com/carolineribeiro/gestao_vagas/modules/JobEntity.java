@@ -1,6 +1,7 @@
 package br.com.carolineribeiro.gestao_vagas.modules;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -16,6 +17,8 @@ public class JobEntity {
     private UUID id;
     private String description;
     private String benefits;
+
+    @NotBlank(message = "Esse campo é obrigatório!!")
     private String level;
 
     @ManyToOne()

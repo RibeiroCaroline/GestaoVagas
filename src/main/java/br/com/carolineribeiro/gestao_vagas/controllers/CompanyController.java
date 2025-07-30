@@ -2,6 +2,7 @@ package br.com.carolineribeiro.gestao_vagas.controllers;
 
 import br.com.carolineribeiro.gestao_vagas.modules.CompanyEntity;
 import br.com.carolineribeiro.gestao_vagas.useCases.CreateCompanyUseCase;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,13 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/company")
-public class CompanyConttoller {
+public class CompanyController {
 
     @Autowired
     private CreateCompanyUseCase createCompanyUseCase;
 
     @PostMapping("/")
-    public ResponseEntity<Object> create (@RequestBody CompanyEntity companyEntity){
+    public ResponseEntity<Object> create (@Valid @RequestBody CompanyEntity companyEntity){
         try{
             var result = this.createCompanyUseCase.execute(companyEntity);
             return ResponseEntity.ok().body(result);
